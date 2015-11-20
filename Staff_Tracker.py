@@ -1,5 +1,6 @@
 
 #this is a change
+#this is aslo a change
 
 class Employee:
     """Class defining the employess attributes and functions"""
@@ -31,43 +32,40 @@ class Employee:
 class Staff:
     '''Manages the employees list and ID numbers'''
     
-    Emps = None         #Dictionary containing employee ID numbers and objects
-    ID = None           #Employee ID
-    Name = None         #Employee Name 
+    #Emps = None         #Dictionary containing employee Key numbers and objects
+    #ID = None           #Employee ID
+    #Name = None         #Employee Name 
     def __init__(self):
         '''Emps is a dictionary who's items are a Key which is the employee ID, and a
         value which is the employee object'''
         self.Emps = {}
-        self.ID = 100
-        self.Name = None
+        self.ID = None
+        self.Name = 'employee'
+        self.Key = 100
     
     def add_employee(self):
-        '''Checks for next available ID then asks 
-        User to input employee name. Adds the ID and new employee
+        '''Checks for next available employee Key and adds a new employee
         object to the Emps dictionary.'''
         #get new ID
-        id = self.get_available_id()
-        
-        #get user input
-        name = raw_input('Enter Employee Name: ') 
+        key = self.get_available_id()
         
         #instanciate new employee object
-        self.Emps[id] = Employee()
-        self.Emps[id].set_id(id)
-        self.Emps[id].set_name(name)
+        self.Emps[key] = Employee()
+        self.Emps[key].set_id(self.ID)
+        self.Emps[key].set_name(self.Name)
         
         #debug feedback that all worked as expected
-        print 'ID: ', self.Emps[id].ID
-        print 'Name: ', self.Emps[id].Name
+        #print 'ID: ', self.Emps[id].ID
+        #print 'Name: ', self.Emps[id].Name
         
     def get_available_id(self):
         '''Check for the next available ID number, initialize
         the first ID to the Default value'''
         if len(self.Emps) == 0 :
-            return self.ID
+            return self.Key
         else:
-            self.ID += 1
-        return self.ID
+            self.Key += 1
+        return self.Key
             
             
 

@@ -78,7 +78,7 @@ class Week:
 class Schedules:
     Name = None
     Weeks = []
-    
+    Positions = ['BT' ,'BB', 'CT']
     def set_name(self, name):
         self.Name = name
         

@@ -1,5 +1,5 @@
 
-
+#this is a change
 
 class Employee:
     """Class defining the employess attributes and functions"""
@@ -35,6 +35,8 @@ class Staff:
     ID = None           #Employee ID
     Name = None         #Employee Name 
     def __init__(self):
+        '''Emps is a dictionary who's items are a Key which is the employee ID, and a
+        value which is the employee object'''
         self.Emps = {}
         self.ID = 100
         self.Name = None
@@ -68,18 +70,6 @@ class Staff:
         return self.ID
             
             
-        
-#Tests    
-
-'''x = Staff()
-x.add_employee()
-x.add_employee()
-x.Emps[101].set_pay_rate(9.5)
-x.Emps[100].set_pay_rate(10)
-
-print x.Emps[101].Name, ' hourly rate: ', x.Emps[101].Pay_Rate
-print x.Emps[100].Name, ' hourly rate: ', x.Emps[100].Pay_Rate
-'''
 
 
 

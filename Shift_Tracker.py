@@ -6,12 +6,14 @@ Classes to define and manage the lists of shift objects
 
 class Shift:
     '''defines the parameters of a shift object'''
-    ID = None
-    Position = None
-    Employee = None
-    Start = None
-    End = None
-    Est_Hours = None
+    def __init__(self):
+        self.ID = None
+        self.Day = None
+        self.Position = None
+        self.Employee = None
+        self.Start = None
+        self.End = None
+        self.Est_Hours = None
     
     def set_id(id):
         self.ID = id
@@ -32,16 +34,18 @@ class Week:
     Each of the 7 list items is another list which holds instances of shift objects
     These shift objects can be appended, deleted and modified as needed.
     ex. Week = [[obj0, obj1, obj2],[]...[]]'''
-    Week = [[],[],[],[],[],[],[]] #A list of 7 lists, one for each day to hold the shift instances
+    #self.Week = [m={},t={},w={},th={},f={},s={},su={}] #A list of 7 dicts, one for each day to hold the shift instances
+    def __init__(self):    
+        self.Week = [{},{},{},{},{},{},{}]
         
-    def add_shift(self):
+    def add_shift(self, day):
         '''Appends a shift object to the specified day. Assigns the object an ID
         which is an integer decimal number representing the object's location in the 
         list.''' 
         #day representing a list item in Week 1-7
-        day = raw_input('Enter Day: ')
+        #day = raw_input('Enter Day: ')
         #map day to 0 - 6
-        day = int(day) - 1
+        #day = int(day) - 1
         #value assigned to the shift's id
         shift_id = None
         #temp value to hold the current location in the day list
@@ -49,28 +53,29 @@ class Week:
         
         '''Searches through the list and looks for an empty location. Assigns a
         shift ID representing the earliest available location'''
-        for i in self.Week[day]:
-            if i is None:
+        for key in self.Week[day]:
+            if key is None:
                 shift_id = count
                 break
             count += 1
         if shift_id is None:
-            shift_id = len(self.Week[day])
-        #append a new empty item in the day list    
-        self.Week[day].append([])
+            shift_id = len(self.Week[day])    
         #instanciate a new shift object in that day list location
         self.Week[day][shift_id] = Shift()
-        #set the objects day and ID values
-        self.Week[day][shift_id].ID = [day, shift_id]
+
+
+        self.Week[day][shift_id].ID = shift_id
+        self.Week[day][shift_id].Day = day
+        print 'day',  self.Week[day][shift_id].Day, 'id', self.Week[day][shift_id].ID
 
         
-    def remove_shift(self):
+    def remove_shift(self, day):
         '''removes a shift object from the day list by using integer input from the 
         user for the day numer (1-7) and the shift ID number'''
-        day = int(raw_input('Enter Day: '))
-        day = day - 1
-        shift_id = int(raw_input('Enter ID: '))
-        print 'day, id: ' , day, shift_id
+        #day = int(raw_input('Enter Day: '))
+        #day = day - 1
+        #shift_id = int(raw_input('Enter ID: '))
+        #print 'day, id: ' , day, shift_id
         #remove the shift object but keep the item location in tact 
         self.Week[day][shift_id] = None
         print self.Week[day][shift_id]

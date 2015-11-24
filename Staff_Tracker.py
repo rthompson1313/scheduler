@@ -44,9 +44,9 @@ class Staff:
         value which is the employee object'''
         self.Emps = {}
         #self.ID = None
-        self.Name = 'employee'
+        #self.Name = 'employee'
         self.Key = 100
-        self.Pos = [] #default value
+        #self.Pos = [] #default value
     
     def add_employee(self):
         '''Checks for next available employee Key and adds a new employee

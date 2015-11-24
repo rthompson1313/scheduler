@@ -22,20 +22,20 @@ class Application(Frame):
 
     def create_display(self):
         #Create week display labels
-        self.label0 = Label(self, text = 'Monday', width = 10)
-        self.label0.grid(row = 1, column = 3)
-        self.label1 = Label(self, text = 'Tuesday', width = 10)
-        self.label1.grid(row = 1, column = 4)
-        self.label2 = Label(self, text = 'Wednesday', width = 10)
-        self.label2.grid(row = 1, column = 5)
-        self.label3 = Label(self, text = 'Thursday', width = 10)
-        self.label3.grid(row = 1, column = 6)
-        self.label4 = Label(self, text = 'Friday', width = 10)
-        self.label4.grid(row = 1, column = 7)
-        self.label5 = Label(self, text = 'Saturday', width = 10)
-        self.label5.grid(row = 1, column = 8)
-        self.label6 = Label(self, text = 'Sunday', width = 10)
-        self.label6.grid(row = 1, column = 9)
+        self.label0 = Label(self, text = 'Monday', width = 12)
+        self.label0.grid(row = 1, column = 3, columnspan = 2)
+        self.label1 = Label(self, text = 'Tuesday', width = 12)
+        self.label1.grid(row = 1, column = 5, columnspan = 2)
+        self.label2 = Label(self, text = 'Wednesday', width = 12)
+        self.label2.grid(row = 1, column = 7, columnspan = 2)
+        self.label3 = Label(self, text = 'Thursday', width = 12)
+        self.label3.grid(row = 1, column = 9, columnspan = 2)
+        self.label4 = Label(self, text = 'Friday', width = 12)
+        self.label4.grid(row = 1, column = 11, columnspan = 2)
+        self.label5 = Label(self, text = 'Saturday', width = 12)
+        self.label5.grid(row = 1, column = 13, columnspan = 2)
+        self.label6 = Label(self, text = 'Sunday', width = 12)
+        self.label6.grid(row = 1, column = 15, columnspan = 2)
         self.label7 = Label(self, text = 'Name', width = 15)
         self.label7.grid(row =1, column = 0, columnspan = 2)
         self.label8 = Label(self, text = 'ID', width = 5)
@@ -44,9 +44,43 @@ class Application(Frame):
         #Create add employees button
         self.add_emp = Button(self, text = '+', width = 1, command = self.add_employee)
         self.add_emp.grid(row = 0, column = 0, columnspan = 2)
-        '''#Create remove employee button
-        self.remove_emp = Button(self, text = '-', width = 1, command = self.remove_employee)
-        self.remove_emp.grid(row = 0, column = 1)'''
+        
+        #Create add and remove shift buttons
+        self.m_add_shift = Button(self, text = '+', width = 1, command = lambda: self.add_shift(0))
+        self.m_add_shift.grid(row = 0, column = 3, sticky = E)
+        self.m_remove_shift = Button(self, text = '-', width = 1 )
+        self.m_remove_shift.grid(row = 0, column = 4, sticky = W)
+        
+        self.t_add_shift = Button(self, text = '+', width = 1, command = lambda: self.add_shift(1))
+        self.t_add_shift.grid(row = 0, column = 5, sticky = E)
+        self.t_remove_shift = Button(self, text = '-', width = 1 )
+        self.t_remove_shift.grid(row = 0, column = 6, sticky = W)
+        
+        self.w_add_shift = Button(self, text = '+', width = 1, command = lambda: self.add_shift(2))
+        self.w_add_shift.grid(row = 0, column = 7, sticky = E)
+        self.w_remove_shift = Button(self, text = '-', width = 1 )
+        self.w_remove_shift.grid(row = 0, column = 8, sticky = W)
+        
+        self.th_add_shift = Button(self, text = '+', width = 1, command = lambda: self.add_shift(3))
+        self.th_add_shift.grid(row = 0, column = 9, sticky = E)
+        self.th_remove_shift = Button(self, text = '-', width = 1 )
+        self.th_remove_shift.grid(row = 0, column = 10, sticky = W)
+        
+        self.f_add_shift = Button(self, text = '+', width = 1, command = lambda: self.add_shift(4))
+        self.f_add_shift.grid(row = 0, column = 11, sticky = E)
+        self.f_remove_shift = Button(self, text = '-', width = 1 )
+        self.f_remove_shift.grid(row = 0, column = 12, sticky = W)
+        
+        self.s_add_shift = Button(self, text = '+', width = 1, command = lambda: self.add_shift(5))
+        self.s_add_shift.grid(row = 0, column = 13, sticky = E)
+        self.s_remove_shift = Button(self, text = '-', width = 1 )
+        self.s_remove_shift.grid(row = 0, column = 14, sticky = W)
+        
+        self.su_add_shift = Button(self, text = '+', width = 1, command = lambda: self.add_shift(6))
+        self.su_add_shift.grid(row = 0, column = 15, sticky = E)
+        self.su_remove_shift = Button(self, text = '-', width = 1 )
+        self.su_remove_shift.grid(row = 0, column = 16, sticky = W)
+        
         
     def add_employee(self):
         #print 'start add_emp'
@@ -62,18 +96,21 @@ class Application(Frame):
         self.update()
         
         
-    def add_shift(self):
-        week.add_shift()
+    def add_shift(self, day):
+        #print 'Add Shift'
+        week.add_shift(day)
+        #print week.Week[day]
+        self.update()
         
     def add_position(self, pos, key):
-        print 'Add Position', key, pos
+        #print 'Add Position', key, pos
         emps.Emps[key].add_position(pos)
-        print emps.Emps[key].Positions
+        #print emps.Emps[key].Positions
         
     def remove_position(self, pos, key):
-        print 'Remove Position', key, pos
+        #print 'Remove Position', key, pos
         emps.Emps[key].remove_position(pos)
-        print emps.Emps[key].Positions
+        #print emps.Emps[key].Positions
         
     def clear_emp_buttons(self):
         #print 'start clear_emp_buttons'
@@ -81,12 +118,12 @@ class Application(Frame):
         #do only if we allready have an emps list
         if len(emps.Emps) > 0:
             #delete the previous buttons
-            for key in emps.Emps:
+            for key in self.name_buttons:
                 '''iterate through the employee dictionary and destroy 
                 the buttons and labels with the associated keys'''
                 self.name_buttons[key].destroy()
                 self.id_labels[key].destroy()
-                print key, 'destroyed'
+                #print key, 'destroyed'
         #print 'end clear_emp_buttons'
         #time.sleep(2)
         
@@ -94,11 +131,14 @@ class Application(Frame):
         '''Update the display with new employees and shifts'''
         #print 'start update'
         #specifies the starting row for the buttons on the window
-        count = 2
+        count_row = 0
+        row_offset = 2
         #dictionary to hold button instances
         self.name_buttons = {}
         #dictionary to hold label instaces
         self.id_labels = {}
+        #dictionary to hold shift button instances
+        self.shift_buttons = {} 
          
         for key in emps.Emps:
             '''iterate through the employee dict and create a button for each'''
@@ -107,18 +147,38 @@ class Application(Frame):
             str_name = str(self.name)
             
             '''create a button that passes the employee key when clicked'''
-            self.name_buttons[key] = Button(self, text = str_name, command=lambda
+            self.name_buttons[count_row] = Button(self, text = str_name, command=lambda
                 k=key: self.emp_popup(k))
-            self.name_buttons[key].grid(row = count, column = 0, columnspan = 2)
-            print key, 'created'
+            self.name_buttons[count_row].grid(row = count_row + row_offset, column = 0, columnspan = 2)
+            #print key, 'created'
             
             '''Create the ID label and increase the row count'''
-            self.id_labels[key] = Label(self, text = str(emps.Emps[key].ID))
-            self.id_labels[key].grid(row = count, column = 2)
-            count = count +1
-            ##print count, emps.Emps[key].Name, key
-        #print 'end update'
+            self.id_labels[count_row] = Label(self, text = str(emps.Emps[key].ID))
+            self.id_labels[count_row].grid(row = count_row + row_offset, column = 2)
+            count_row += 1
+        #print 'name_buttons \n', self.name_buttons, '\n'
         
+        count_column = 0
+        column_offset = 3
+        row_offset = 2
+        for day in week.Week:
+            '''iterate through the shifts lists and create buttons for each in 
+            the appropriate column'''
+            count_row = 0
+            self.shift_buttons[count_column] = {}
+            #print 'week', week.Week, '\n'
+            #print 'day', day ,'\n'
+            for key in day:
+                #print "HERE!!"
+                #print 'key', key
+                self.shift_buttons[count_column][count_row] = Button(self, text = str(day[count_row].Start))
+                self.shift_buttons[count_column][count_row].grid(row = count_row + row_offset, 
+                    column = 2*count_column + column_offset, columnspan = 2)
+                count_row += 1
+            count_column += 1
+        #print 'shift_buttons \n',self.shift_buttons, '\n'
+                
+            
     '''def remove_emp_popup(self):
         
         top = Toplevel()
@@ -129,6 +189,8 @@ class Application(Frame):
         message = 'Select the Employees to remove'
         instruct = Label(top, text = message)
         instruct.grid()'''
+    def shift_popup(self, key):
+        '''basically do the same as for emp_popup'''
         
     
     def emp_popup(self, key):
@@ -166,7 +228,7 @@ class Application(Frame):
         self.pos_label = Label(top, text = 'Positions', width = 8)
         self.pos_label.grid(row = 2, column = 0)
         
-        print key, 'Positions', emps.Emps[key].Positions
+        print key, 'Positions',  emps.Emps[key].Positions
         for pos in sch.Positions:
             '''iterate through the available positions'''
             self.match = False
